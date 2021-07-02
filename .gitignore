@@ -1,0 +1,8 @@
+# javaScript
+node_modules
+
+# Webpack
+dist
+
+# iOS
+.DS_Store
