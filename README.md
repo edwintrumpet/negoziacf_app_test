@@ -2,6 +2,7 @@
 
 <p align="center">
   <img src="https://github.com/edwintrumpet/negoziacf_app_test/workflows/CI/badge.svg" alt="CI badge">
+  <img src="https://github.com/edwintrumpet/negoziacf_app_test/workflows/Staging/badge.svg" alt="Staging badge">
 </p>
 
 <p align="center">
