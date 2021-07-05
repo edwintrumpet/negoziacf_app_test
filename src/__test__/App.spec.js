@@ -6,6 +6,6 @@ import App from '../App';
 describe('App', () => {
   test('Render message', () => {
     render(<App />);
-    screen.getByText(/react works/i);
+    screen.getByText(/material ui works/i);
   });
 });
