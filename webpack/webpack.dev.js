@@ -5,10 +5,10 @@ const webpack = require('webpack');
 
 module.exports = {
   entry: {
-    home: path.resolve(__dirname, 'src/index.js'),
+    home: path.resolve(__dirname, '../src/index.js'),
   },
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, '../dist'),
     filename: 'js/[name].js',
   },
   mode: 'development',
@@ -34,7 +34,7 @@ module.exports = {
     new HTMLWebpackPlugin({
       title: 'NegoziaCF',
       hash: false,
-      template: path.resolve(__dirname, 'public/index.html'),
+      template: path.resolve(__dirname, '../public/index.html'),
     }),
   ],
 };

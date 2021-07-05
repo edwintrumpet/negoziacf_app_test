@@ -4,8 +4,9 @@
   "description": "Web app for tech test applying to developer at NegoziaCF",
   "main": "index.js",
   "scripts": {
-    "start": "webpack serve --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js",
+    "start": "webpack serve --config webpack/webpack.dev.js",
+    "pre-build": "webpack --config webpack/webpack.config.js",
+    "build": "webpack --config webpack/webpack.prod.js",
     "lint": "eslint ./src/",
     "lint:fix": "eslint ./src/ --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
