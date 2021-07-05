@@ -1,17 +1,14 @@
 import React from 'react';
-import { Button } from '@material-ui/core';
-import { Send } from '@material-ui/icons';
+
+import { Home, Login, Splash } from './components/views';
+
+const user = '';
+const loading = true;
 
 function App() {
-  return (
-    <Button
-      color="primary"
-      startIcon={<Send />}
-      variant="contained"
-    >
-      Material UI works!
-    </Button>
-  );
+  if (loading) return <Splash />;
+  if (user) return <Home />;
+  return <Login />;
 }
 
 export default App;
