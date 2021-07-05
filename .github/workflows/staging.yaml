@@ -24,6 +24,8 @@ jobs:
           git config --global user.name "${{secrets.USERNAME}}"
       - name: Install
         run: npm i
+      - name: Pre build
+        run: npm run pre-build
       - name: Build
         run: npm run build
       - name: Deploy
