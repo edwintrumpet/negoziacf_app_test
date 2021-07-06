@@ -10,17 +10,20 @@ import {
   IconButton,
   InputAdornment,
   TextField,
+  LinearProgress,
+  CircularProgress,
 } from '@material-ui/core';
-import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { Visibility, VisibilityOff, Send } from '@material-ui/icons';
 import * as Yup from 'yup';
 
 import { useDispatch } from '../../../context';
-import { login } from '../../../context/actions';
+import { loginAction } from '../../../context/actions';
 import useStyles from './Login.styles';
 
 const Login = () => {
   const classes = useStyles();
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
 
   const fields = [
@@ -56,12 +59,15 @@ const Login = () => {
     return Yup.object().shape(validationObject);
   };
 
-  const onSubmit = (values) => {
-    login(dispatch, values.email);
+  const onSubmit = async (values) => {
+    setLoading(true);
+    await loginAction(dispatch, values.email);
+    setLoading(false);
   };
   return (
     <Container className={classes.root}>
       <Card className={classes.card}>
+        {loading && <LinearProgress />}
         <CardHeader title="Bienvenido" className={classes.title} />
         <Formik
           initialValues={initialValues()}
@@ -83,6 +89,7 @@ const Login = () => {
                   autoComplete={fields[0].name}
                   autoFocus
                   className={classes.input}
+                  disabled={loading}
                   error={errors[fields[0].name] && touched[fields[0].name]}
                   fullWidth
                   helperText={
@@ -100,6 +107,7 @@ const Login = () => {
                 />
                 <TextField
                   className={classes.input}
+                  disabled={loading}
                   error={errors[fields[1].name] && touched[fields[1].name]}
                   fullWidth
                   helperText={
@@ -136,16 +144,18 @@ const Login = () => {
               </CardContent>
               <CardActions className={classes.actions}>
                 <Button
+                  color="primary"
                   disabled={
                     !!(
                       !touched[fields[0].name]
                     || errors[fields[0].name]
                     || errors[fields[1].name]
+                    || loading
                     )
                   }
+                  endIcon={loading ? <CircularProgress size={20} /> : <Send />}
                   type="submit"
                   variant="contained"
-                  color="primary"
                 >
                   Iniciar sesión
                 </Button>

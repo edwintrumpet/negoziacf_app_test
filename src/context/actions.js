@@ -1,8 +1,10 @@
-import { CHANGE_NAME } from './types';
+import { SET_USER } from './types';
 
-// import { changeName as changeNameService } from '../services/user';
+import { loginService } from '../services/users';
 
 // eslint-disable-next-line import/prefer-default-export
-export const login = async (dispatch, payload) => {
-  dispatch({ type: CHANGE_NAME, payload });
+export const loginAction = async (dispatch, payload) => {
+  const user = await loginService(payload);
+  dispatch({ type: SET_USER, payload: user.name });
+  window.localStorage.setItem('token', user.token);
 };
