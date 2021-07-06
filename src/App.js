@@ -3,7 +3,7 @@ import React from 'react';
 import { Home, Login, Splash } from './components/views';
 
 const user = '';
-const loading = true;
+const loading = false;
 
 function App() {
   if (loading) return <Splash />;
