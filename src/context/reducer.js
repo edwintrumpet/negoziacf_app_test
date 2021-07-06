@@ -1,10 +1,10 @@
-import { CHANGE_NAME } from './types';
+import { SET_USER } from './types';
 
 const reducer = (state, action) => {
   const { payload, type } = action;
 
   switch (type) {
-    case CHANGE_NAME:
+    case SET_USER:
       return {
         ...state,
         user: payload,

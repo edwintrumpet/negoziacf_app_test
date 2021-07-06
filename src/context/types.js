@@ -1,3 +1,2 @@
-export const ACTIVATE_LOADER = 'ACTIVATE_LOADER';
-export const CHANGE_NAME = 'CHANGE_NAME';
-export const DEACTIVATE_LOADER = 'DEACTIVATE_LOADER';
+// eslint-disable-next-line import/prefer-default-export
+export const SET_USER = 'SET_USER';
