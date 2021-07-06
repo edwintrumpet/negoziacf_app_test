@@ -14,11 +14,14 @@ import {
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import * as Yup from 'yup';
 
+import { useDispatch } from '../../../context';
+import { login } from '../../../context/actions';
 import useStyles from './Login.styles';
 
 const Login = () => {
   const classes = useStyles();
   const [passwordVisibility, setPasswordVisibility] = useState(false);
+  const dispatch = useDispatch();
 
   const fields = [
     {
@@ -54,16 +57,16 @@ const Login = () => {
   };
 
   const onSubmit = (values) => {
-    console.log(values);
+    login(dispatch, values.email);
   };
   return (
     <Container className={classes.root}>
       <Card className={classes.card}>
         <CardHeader title="Bienvenido" className={classes.title} />
         <Formik
-          initialValues={initialValues}
+          initialValues={initialValues()}
           onSubmit={onSubmit}
-          validationSchema={validationSchema}
+          validationSchema={validationSchema()}
         >
           {({
             handleChange,
@@ -92,7 +95,7 @@ const Login = () => {
                   onBlur={handleBlur(fields[0].name)}
                   onChange={handleChange(fields[0].name)}
                   type={fields[0].name}
-                  value={values.email}
+                  value={values[fields[0].name]}
                   variant="outlined"
                 />
                 <TextField
@@ -109,7 +112,7 @@ const Login = () => {
                   onBlur={handleBlur(fields[1].name)}
                   onChange={handleChange(fields[1].name)}
                   type={passwordVisibility ? 'text' : 'password'}
-                  value={values.password}
+                  value={values[fields[1].name]}
                   variant="outlined"
                   InputProps={{
                     endAdornment: (

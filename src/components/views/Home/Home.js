@@ -1,6 +1,18 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
 
-const Home = () => <Typography variant="h1">Home works!</Typography>;
+import { useGlobalState } from '../../../context';
+
+const Home = () => {
+  const { user } = useGlobalState();
+  return (
+    <Typography variant="h1">
+      Welcome
+      {' '}
+      {user}
+      !
+    </Typography>
+  );
+};
 
 export default Home;

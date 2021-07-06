@@ -1,12 +1,11 @@
 import React from 'react';
 
+import { useGlobalState } from './context';
 import { Home, Login, Splash } from './components/views';
 
-const user = '';
-const loading = false;
-
 function App() {
-  if (loading) return <Splash />;
+  const { user } = useGlobalState();
+  if (user === undefined) return <Splash />;
   if (user) return <Home />;
   return <Login />;
 }
