@@ -1,17 +1,19 @@
-import React from 'react';
-import { Button } from '@material-ui/core';
-import { Send } from '@material-ui/icons';
+import React, { useEffect } from 'react';
+
+import { useGlobalState, useDispatch } from './context';
+import { getOwnUserAction } from './context/actions';
+import { Home, Login, Splash } from './components/views';
 
 function App() {
-  return (
-    <Button
-      color="primary"
-      startIcon={<Send />}
-      variant="contained"
-    >
-      Material UI works!
-    </Button>
-  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    getOwnUserAction(dispatch);
+  }, []);
+
+  const { user } = useGlobalState();
+  if (user === undefined) return <Splash />;
+  if (user) return <Home />;
+  return <Login />;
 }
 
 export default App;
