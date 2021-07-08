@@ -1,10 +1,26 @@
-// eslint-disable-next-line import/prefer-default-export
-export const loginService = () => {
-  const token = 'secureToken';
-  const name = 'Edwin';
-  return new Promise((res) => {
-    setTimeout(() => {
-      res({ token, name });
-    }, 3000);
+const baseURL = 'https://negozia-api-test-staging.herokuapp.com';
+
+export const loginService = async (payload) => {
+  const path = 'login';
+  const URL = `${baseURL}/${path}`;
+  return fetch(URL, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+};
+
+export const getOwnUserService = async () => {
+  const path = 'own';
+  const URL = `${baseURL}/${path}`;
+  return fetch(URL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
   });
 };

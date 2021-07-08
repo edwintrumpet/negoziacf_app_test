@@ -9,7 +9,7 @@ const Home = () => {
     <Typography variant="h1">
       Welcome
       {' '}
-      {user}
+      {user.name}
       !
     </Typography>
   );

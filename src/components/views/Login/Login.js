@@ -61,7 +61,7 @@ const Login = () => {
 
   const onSubmit = async (values) => {
     setLoading(true);
-    await loginAction(dispatch, values.email);
+    await loginAction(dispatch, values);
     setLoading(false);
   };
   return (
