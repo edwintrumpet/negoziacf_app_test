@@ -1,4 +1,5 @@
 const baseURL = 'https://negozia-api-test-staging.herokuapp.com';
+// const baseURL = 'http://localhost:8000';
 
 export const loginService = async (payload) => {
   const path = 'login';
@@ -14,7 +15,7 @@ export const loginService = async (payload) => {
 };
 
 export const getOwnUserService = async () => {
-  const path = 'own';
+  const path = 'users/own';
   const URL = `${baseURL}/${path}`;
   return fetch(URL, {
     method: 'GET',
