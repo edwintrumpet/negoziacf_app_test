@@ -22,6 +22,9 @@ jobs:
         run: |
           git config --global user.email "${{secrets.EMAIL}}"
           git config --global user.name "${{secrets.USERNAME}}"
+      - name: Set .env
+        run: |
+          echo "API_URL_PROD=${{secrets.API_URL_PROD}}" >> .env
       - name: Install
         run: npm i
       - name: Pre build
