@@ -25,7 +25,7 @@
   "bugs": {
     "url": "https://github.com/edwintrumpet/negoziacf_app_test/issues"
   },
-  "homepage": "https://github.com/edwintrumpet/negoziacf_app_test#readme",
+  "homepage": "https://edwintrumpet.github.io/negoziacf_app_test/",
   "dependencies": {
     "@babel/runtime": "~7.14.6",
     "@material-ui/core": "^4.12.1",
