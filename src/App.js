@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Route,
   Switch,
 } from 'react-router-dom';
@@ -25,7 +25,7 @@ function App() {
 
   if (loading) return <Splash />;
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <Switch>
         <ProtectedRoute exact path="/"><Home /></ProtectedRoute>
         <Route exact path="/login"><Login /></Route>
