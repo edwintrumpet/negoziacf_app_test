@@ -7,3 +7,6 @@ webpack/*-manifest.json
 
 # iOS
 .DS_Store
+
+# secrets
+.env

@@ -1,4 +1,4 @@
-import { SET_USER } from './types';
+import { SET_USER, CLEAR_USER } from './types';
 
 const reducer = (state, action) => {
   const { payload, type } = action;
@@ -8,6 +8,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         user: payload,
+      };
+    case CLEAR_USER:
+      return {
+        ...state,
+        user: undefined,
       };
     default:
       return state;

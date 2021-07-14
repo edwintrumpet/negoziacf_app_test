@@ -15,6 +15,7 @@ import {
 } from '@material-ui/core';
 import { Visibility, VisibilityOff, Send } from '@material-ui/icons';
 import * as Yup from 'yup';
+import { useHistory } from 'react-router-dom';
 
 import { useDispatch } from '../../../context';
 import { loginAction } from '../../../context/actions';
@@ -25,6 +26,7 @@ const Login = () => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
   const [loading, setLoading] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const fields = [
     {
@@ -63,6 +65,7 @@ const Login = () => {
     setLoading(true);
     await loginAction(dispatch, values);
     setLoading(false);
+    history.push('/');
   };
   return (
     <Container className={classes.root}>

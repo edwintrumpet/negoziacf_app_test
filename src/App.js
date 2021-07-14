@@ -1,19 +1,39 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { useGlobalState, useDispatch } from './context';
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+} from 'react-router-dom';
+import { useDispatch } from './context';
 import { getOwnUserAction } from './context/actions';
-import { Home, Login, Splash } from './components/views';
+import {
+  CreateUser,
+  Home,
+  Login,
+  Splash,
+} from './components/views';
+import { ProtectedRoute } from './components/templates';
 
 function App() {
+  const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
-    getOwnUserAction(dispatch);
+    getOwnUserAction(dispatch)
+      .then(() => setLoading(false));
   }, []);
 
-  const { user } = useGlobalState();
-  if (user === undefined) return <Splash />;
-  if (user) return <Home />;
-  return <Login />;
+  if (loading) return <Splash />;
+  return (
+    <Router>
+      <Switch>
+        <ProtectedRoute exact path="/"><Home /></ProtectedRoute>
+        <Route exact path="/login"><Login /></Route>
+        <Route exact path="/user-create"><CreateUser /></Route>
+        <Route path="*"><Splash /></Route>
+      </Switch>
+    </Router>
+  );
 }
 
 export default App;

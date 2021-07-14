@@ -1,8 +1,10 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
+  devtool: 'cheap-source-map',
   entry: {
     home: path.resolve(__dirname, '../src/index.js'),
   },
@@ -22,13 +24,15 @@ module.exports = {
     ],
   },
   devServer: {
-    host: '0.0.0.0',
+    historyApiFallback: true,
+    host: 'localhost',
     port: 3000,
     disableHostCheck: false,
     open: true,
     hot: true,
   },
   plugins: [
+    new Dotenv(),
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       title: 'NegoziaCF',

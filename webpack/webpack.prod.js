@@ -1,8 +1,10 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
+  devtool: 'hidden-source-map',
   entry: {
     home: path.resolve(__dirname, '../src/index.js'),
   },
@@ -22,6 +24,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new Dotenv(),
     new HTMLWebpackPlugin({
       title: 'NegociaCF',
       hash: true,
