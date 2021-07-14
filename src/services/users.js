@@ -1,5 +1,8 @@
-const baseURL = 'https://negozia-api-test-staging.herokuapp.com';
-// const baseURL = 'http://localhost:8000';
+const env = process.env.NODE_ENV;
+const apiUrlProd = process.env.API_URL_PROD;
+const apiUrlDev = process.env.API_URL_DEV;
+
+const baseURL = env === 'production' ? apiUrlProd : apiUrlDev;
 
 export const loginService = async (payload) => {
   const path = 'login';
