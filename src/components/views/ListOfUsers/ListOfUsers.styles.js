@@ -1,6 +1,15 @@
 import { makeStyles } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: 16,
+  },
+  barTitle: {
+    flex: 1,
+  },
+  link: {
+    color: 'white',
+  },
   rowHead: {
     backgroundColor: theme.palette.primary.main,
   },
