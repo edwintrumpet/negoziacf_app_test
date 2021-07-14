@@ -42,3 +42,16 @@ export const createUserService = async (payload) => {
   });
   return response.json();
 };
+
+export const deleteUser = async (payload) => {
+  const path = 'users';
+  const URL = `${baseURL}/${path}/${payload}`;
+  const response = await fetch(URL, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+  return response.json();
+};
