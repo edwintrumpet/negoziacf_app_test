@@ -4,6 +4,7 @@ const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = {
+  devtool: 'cheap-source-map',
   entry: {
     home: path.resolve(__dirname, '../src/index.js'),
   },

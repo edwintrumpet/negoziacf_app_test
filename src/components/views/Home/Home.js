@@ -1,18 +1,15 @@
 import React from 'react';
-import { Typography } from '@material-ui/core';
 
 import { useGlobalState } from '../../../context';
+import ListOfUsers from '../ListOfUsers/ListOfUsers';
+import UserProfile from '../UserProfile/UserProfile';
 
 const Home = () => {
-  const { user } = useGlobalState();
-  return (
-    <Typography variant="h1">
-      Welcome
-      {' '}
-      {user.name}
-      !
-    </Typography>
-  );
+  const { user: { role } } = useGlobalState();
+  if (role === 'admin') {
+    return <ListOfUsers />;
+  }
+  return <UserProfile />;
 };
 
 export default Home;
