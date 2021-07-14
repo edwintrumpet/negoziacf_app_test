@@ -1,6 +1,7 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: {
@@ -22,6 +23,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new Dotenv(),
     new HTMLWebpackPlugin({
       title: 'NegociaCF',
       hash: true,

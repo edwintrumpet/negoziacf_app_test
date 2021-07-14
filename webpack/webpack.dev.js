@@ -1,6 +1,7 @@
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: {
@@ -22,13 +23,14 @@ module.exports = {
     ],
   },
   devServer: {
-    host: '0.0.0.0',
+    host: 'localhost',
     port: 3000,
     disableHostCheck: false,
     open: true,
     hot: true,
   },
   plugins: [
+    new Dotenv(),
     new webpack.HotModuleReplacementPlugin(),
     new HTMLWebpackPlugin({
       title: 'NegoziaCF',
