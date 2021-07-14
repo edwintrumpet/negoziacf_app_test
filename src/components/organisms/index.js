@@ -1,4 +1,4 @@
 import Alert from './Alert/Alert';
+import NavigationBar from './NavigationBar/NavigationBar';
 
-// eslint-disable-next-line import/prefer-default-export
-export { Alert };
+export { Alert, NavigationBar };

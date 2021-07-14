@@ -12,12 +12,14 @@ import {
   CircularProgress,
   IconButton,
 } from '@material-ui/core';
-import { Info, Edit, Delete } from '@material-ui/icons';
+import {
+  Info, Edit, Delete,
+} from '@material-ui/icons';
 
 import { listUsersService } from '../../../services/users';
 import useStyles from './ListOfUsers.styles';
 
-import { Alert } from '../../organisms';
+import { Alert, NavigationBar } from '../../organisms';
 
 const ListOfUsers = () => {
   const [users, setUsers] = useState([]);
@@ -94,25 +96,28 @@ const ListOfUsers = () => {
   );
 
   return (
-    <Container>
-      <TableContainer component={Paper}>
-        <Table>
-          <TableHead>
-            <TableRow className={classes.rowHead}>
-              <TableCell className={classes.colHead}>Nombre</TableCell>
-              <TableCell className={classes.colHead}>Email</TableCell>
-              <TableCell className={classes.colHead}>Rol</TableCell>
-              <TableCell className={classes.colHead} />
-              <TableCell className={classes.colHead} />
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {users.length ? tableContent : voidContent()}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <Alert error={error} handleCloseAlert={handleCloseAlert} />
-    </Container>
+    <>
+      <NavigationBar />
+      <Container className={classes.root}>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow className={classes.rowHead}>
+                <TableCell className={classes.colHead}>Nombre</TableCell>
+                <TableCell className={classes.colHead}>Email</TableCell>
+                <TableCell className={classes.colHead}>Rol</TableCell>
+                <TableCell className={classes.colHead} />
+                <TableCell className={classes.colHead} />
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {users.length ? tableContent : voidContent()}
+            </TableBody>
+          </Table>
+        </TableContainer>
+        <Alert error={error} handleCloseAlert={handleCloseAlert} />
+      </Container>
+    </>
   );
 };
 
