@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import {
   HashRouter as Router,
+  Redirect,
   Route,
   Switch,
 } from 'react-router-dom';
@@ -13,7 +14,7 @@ import {
   Login,
   Splash,
 } from './components/views';
-import { ProtectedRoute } from './components/templates';
+import { ProtectedRoute, MainLayout } from './components/layouts';
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -26,12 +27,16 @@ function App() {
   if (loading) return <Splash />;
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <Switch>
-        <ProtectedRoute exact path="/"><Home /></ProtectedRoute>
-        <Route exact path="/login"><Login /></Route>
-        <Route exact path="/user-create"><CreateUser /></Route>
-        <Route path="*"><Splash /></Route>
-      </Switch>
+      <MainLayout>
+        <Switch>
+          <ProtectedRoute exact path="/"><Home /></ProtectedRoute>
+          <Route exact path="/login"><Login /></Route>
+          <ProtectedRoute exact path="/user-create">
+            <CreateUser />
+          </ProtectedRoute>
+          <Route path="*"><Redirect to="/" /></Route>
+        </Switch>
+      </MainLayout>
     </Router>
   );
 }

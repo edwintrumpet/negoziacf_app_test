@@ -28,3 +28,30 @@ export const listUsersService = async () => {
   });
   return response.json();
 };
+
+export const createUserService = async (payload) => {
+  const path = 'users';
+  const URL = `${baseURL}/${path}`;
+  const response = await fetch(URL, {
+    method: 'POST',
+    body: JSON.stringify(payload),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+  return response.json();
+};
+
+export const deleteUser = async (payload) => {
+  const path = 'users';
+  const URL = `${baseURL}/${path}/${payload}`;
+  const response = await fetch(URL, {
+    method: 'DELETE',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+  return response.json();
+};

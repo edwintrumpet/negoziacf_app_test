@@ -16,10 +16,10 @@ import {
   Info, Edit, Delete,
 } from '@material-ui/icons';
 
-import { listUsersService } from '../../../services/users';
+import { listUsersService, deleteUser } from '../../../services/users';
 import useStyles from './ListOfUsers.styles';
 
-import { Alert, NavigationBar } from '../../organisms';
+import { Alert } from '../../organisms';
 
 const ListOfUsers = () => {
   const [users, setUsers] = useState([]);
@@ -27,37 +27,40 @@ const ListOfUsers = () => {
   const [loading, setLoading] = useState(true);
   const classes = useStyles();
 
-  useEffect(() => {
-    listUsersService()
-      .then((res) => {
-        if (res.message !== 'list of users') {
-          setError({
-            title: res.statusCode,
-            error: res.error,
-            message: res.message,
-          });
-        } else {
-          setUsers(res.data);
-        }
-      })
-      .catch(() => {
+  const getUsers = async () => {
+    try {
+      const response = await listUsersService();
+      if (response.message !== 'list of users') {
         setError({
-          title: '500',
-          error: 'Internal Server error',
-          message: 'Unknown error',
+          title: response.statusCode,
+          error: response.error,
+          message: response.message,
         });
-      })
-      .finally(() => {
-        setLoading(false);
+      } else {
+        setUsers(response.data);
+      }
+    } catch (err) {
+      setError({
+        title: '500',
+        error: 'Internal Server error',
+        message: 'Unknown error',
       });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
   }, []);
 
   const handleCloseAlert = () => {
     setError('');
   };
 
-  const handleDelete = (idUser) => {
-    console.log('borrando a', idUser);
+  const handleDelete = async (idUser) => {
+    await deleteUser(idUser);
+    await getUsers();
   };
 
   const tableContent = users.map((user) => (
@@ -97,7 +100,6 @@ const ListOfUsers = () => {
 
   return (
     <>
-      <NavigationBar />
       <Container className={classes.root}>
         <TableContainer component={Paper}>
           <Table>
