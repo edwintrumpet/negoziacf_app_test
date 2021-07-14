@@ -8,8 +8,8 @@ function App() {
   const [loading, setLoading] = useState(true);
   const dispatch = useDispatch();
   useEffect(() => {
-    getOwnUserAction(dispatch);
-    setLoading(false);
+    getOwnUserAction(dispatch)
+      .then(() => setLoading(false));
   }, []);
 
   const { user } = useGlobalState();

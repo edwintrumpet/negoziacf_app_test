@@ -28,3 +28,16 @@ export const getOwnUserService = async () => {
     credentials: 'include',
   });
 };
+
+export const listUsersService = async () => {
+  const path = 'users';
+  const URL = `${baseURL}/${path}`;
+  const response = await fetch(URL, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    credentials: 'include',
+  });
+  return response.json();
+};
