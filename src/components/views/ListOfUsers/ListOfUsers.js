@@ -19,7 +19,7 @@ import {
 import { listUsersService } from '../../../services/users';
 import useStyles from './ListOfUsers.styles';
 
-import { Alert, NavigationBar } from '../../organisms';
+import { Alert } from '../../organisms';
 
 const ListOfUsers = () => {
   const [users, setUsers] = useState([]);
@@ -97,7 +97,6 @@ const ListOfUsers = () => {
 
   return (
     <>
-      <NavigationBar />
       <Container className={classes.root}>
         <TableContainer component={Paper}>
           <Table>
